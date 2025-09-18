@@ -5,7 +5,7 @@ public class TransportationTester {
         Transportation suv = new SUV();
         Transportation tricycle = new Tricycle();
         Transportation motorcycle = new Motorcycle();
-        Transportation truck = new truck();
+        Transportation truck = new Truck();
         // Air Transport
         Transportation helicopter = new Helicopter();
         Transportation plane = new Airplane();
@@ -28,4 +28,5 @@ public class TransportationTester {
             System.out.println("-------------------");
         }
     }
+
 }
