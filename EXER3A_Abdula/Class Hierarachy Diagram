@@ -1,0 +1,14 @@
+Transportation (Base Class)
+├── AirTransport
+│   ├── Helicopter
+│   ├── Airplane
+│   └── SpaceShuttle
+├── LandTransport
+│   ├── Truck
+│   ├── SUV
+│   ├── Tricycle
+│   ├── Motorcycle
+│   └── Kariton
+└── WaterTransport
+    ├── Ship
+    └── Boat
