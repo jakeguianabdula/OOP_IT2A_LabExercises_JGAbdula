@@ -1,5 +1,3 @@
-package EXER5_Abdula;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -36,7 +34,7 @@ public class ArithmeticGame extends JFrame {
         settingsPanel.setBorder(BorderFactory.createTitledBorder("Game Settings"));
         settingsPanel.setLayout(new FlowLayout());
 
-        operatorCombo = new JComboBox<>(new String[]{"Addition (+)", "Subtraction (-)", "Multiplication (*)", "Division (/)"});
+        operatorCombo = new JComboBox<>(new String[]{"Addition (+)", "Subtraction (-)", "Multiplication (*)", "Division (/)", "Modulo (%)"});
         levelCombo = new JComboBox<>(new String[]{"Easy (1-50)", "Medium (50-150)", "Hard (150-300)"});
 
         startButton = new JButton("Start Game");
@@ -57,20 +55,20 @@ public class ArithmeticGame extends JFrame {
         num1Field = new JTextField(5);
         num1Field.setEditable(false);
         num1Field.setHorizontalAlignment(JTextField.CENTER);
-        num1Field.setFont(new Font("Arial", Font.BOLD, 24));
+        num1Field.setFont(new Font("Arial", Font.BOLD, 30));
 
         operatorField = new JTextField(3);
         operatorField.setEditable(false);
         operatorField.setHorizontalAlignment(JTextField.CENTER);
-        operatorField.setFont(new Font("Arial", Font.BOLD, 24));
+        operatorField.setFont(new Font("Arial", Font.BOLD, 30));
 
         num2Field = new JTextField(5);
         num2Field.setEditable(false);
         num2Field.setHorizontalAlignment(JTextField.CENTER);
-        num2Field.setFont(new Font("Arial", Font.BOLD, 24));
+        num2Field.setFont(new Font("Arial", Font.BOLD, 30));
 
         answerField = new JTextField(10);
-        answerField.setFont(new Font("Arial", Font.PLAIN, 18));
+        answerField.setFont(new Font("Arial", Font.PLAIN, 25));
 
         submitButton = new JButton("Submit Answer");
 
@@ -144,6 +142,25 @@ public class ArithmeticGame extends JFrame {
                 num2 = random.nextInt(max) + 1;
             } while (num2 == 0 || num1 % num2 != 0);
             correctAnswer = num1 / num2;
+        } else if ("Modulo (%)".equals(operator)) {
+            selectedOperator = "%";
+            // Ensure num2 is not zero
+            while (num2 == 0) {
+                num2 = random.nextInt(max - min + 1) + min;
+            }
+            correctAnswer = num1 % num2;
+        }
+
+        // For subtraction and modulo, ensure num1 > num2
+        if (("-".equals(selectedOperator) || "%".equals(selectedOperator)) && num1 < num2) {
+            int temp = num1;
+            num1 = num2;
+            num2 = temp;
+            if ("-".equals(selectedOperator)) {
+                correctAnswer = num1 - num2;
+            } else if ("%".equals(selectedOperator)) {
+                correctAnswer = num1 % num2;
+            }
         }
 
         num1Field.setText(String.valueOf(num1));
